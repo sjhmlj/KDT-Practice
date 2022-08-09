@@ -10,3 +10,23 @@
 - 거의 다 풀었음을 직감하였으나 다음단계로 나아가지 못하는 중...
 - test case를 여러가지 돌려보니 몇 상황에서 정상 동작하지 않는 것을 확인
 - 추후 보완해서 완성해야곘다...!
+
+### 풀었다...!!!!!!!
+- 와...풀었다... (2시간 걸림ㅋ)
+- 문제의 유형이 DFS인것을 알고 유튜브로 DFS의 원리에 대해 학습하고서 몇 번이고 그림으로 그려서 보니 이해가 됐고 코드를 짤 수 있었다!!
+- DFS는 말 그대로 깊이 탐색을 진행한다.
+- 초기값으로 부터 출발하여 자식 노드의 끝까지 파고들어가는 특징에서 BFS와는 다른 결의 탐색이다.
+- 두 개의 container를 만들어 진행하였고 set type을 통해 더욱 편하게 진행할 수 있었다.
+```python
+# DFS
+stack = graphs[1]  
+output = set()
+
+while stack:
+    x = stack.pop()
+
+    for i in graphs[x]:
+        if i not in output and i not in stack:
+            stack.append(i)
+        output.add(x)
+```

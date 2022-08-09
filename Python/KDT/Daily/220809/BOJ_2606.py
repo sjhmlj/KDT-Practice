@@ -20,7 +20,21 @@ for _ in range(m):
     graphs[v].append(u)
 
 
-target = graphs[1]
-result = set()
+stack = graphs[1]  
+output = set()
 
-# 아직 미완성
+while stack:
+    x = stack.pop()
+
+    for i in graphs[x]:
+        if i not in output and i not in stack:
+            stack.append(i)
+        output.add(x)
+
+if 1 in output:
+    print(len(output) - 1)
+else:
+    print(len(output))
+        
+        
+    
