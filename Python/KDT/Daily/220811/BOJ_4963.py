@@ -5,7 +5,7 @@ Q. 섬의 개수
 '''
 import sys
 
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(10**6)
 sys.stdin = open('input_4963.txt', 'r')
 
 def dfs(r, c):
