@@ -1,34 +1,37 @@
-'''
-Q. 촌수 계산
-- 무방향
-'''
 import sys
 
-sys.setrecursionlimit(10000)
+sys.stdin = open('input_2644.txt')
 
-def dfs(v, cnt):
-    visited[v] = True
-    cnt += 1
-    for i in graph[v]:
-        if not visited[i]:
-            dfs(i, cnt)
-
-# 전체 사람 수 => 노드 수
+# 전체 사람 수
 n = int(input())
-
-# 촌수를 계산해야하는 두 사람
-p1, p2 = map(int, input().split())  # 시작 node : p1
-
-# 부모 자식들 간의 관계의 개수 => 간선 수
+# 촌수를 알고싶은 두 사람
+p1, p2 = map(int, input().split())
+# 관계 수
 m = int(input())
-
+# DFS를 위한 그래프 및 방문 리스트 초기화
 graph = [[] for _ in range(n + 1)]
-visited = [False] * (n + 1)  # 0촌 존재 X
-
-# 부모 자식간의 관계를 나타내는 두 번호
+visited = [False] * (n + 1)
+# 무방향 그래프 초기화
 for _ in range(m):
     x, y = map(int, input().split())
     graph[x].append(y)
     graph[y].append(x)
 
-dfs(p1, 0)  # 미완료
+stack = []
+stack.append((p1, 0))
+visited[p1] = True
+result = []
+result = -1
+# [[], [2, 3], [1, 7, 8, 9], [1], [5, 6], [4], [4], [2], [2], [2]]
+while stack:
+    adjs, cnt = stack.pop()
+
+    if adjs == p2:
+        result = cnt
+        break
+    for adj in graph[adjs]:
+        if not visited[adj]:
+            visited[adj] = True
+            stack.append((adj, cnt + 1))
+
+print(result)
